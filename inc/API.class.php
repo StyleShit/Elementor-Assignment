@@ -50,6 +50,11 @@ class API
             HTTP::_400( $error );
         }
 
+        if( sizeof( DB::getInstance()->where( 'userName', $_POST['user-name'] ) ) > 0 )
+        {
+            $error = self::createError( 'User name already exists' );
+            HTTP::_409( $error );
+        }
 
         /**
          * Create user
