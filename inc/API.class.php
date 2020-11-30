@@ -168,9 +168,11 @@ class API
     // create an API response message to the user
     private static function createMessage( $message, $data = '' )
     {
+        $data = is_array( $data ) ? $data : [ $data ];
+
         return [
             'message' => $message,
-            'data' => [ $data ],
+            'data' => $data,
             'time' => time()
         ];
     }
@@ -179,9 +181,11 @@ class API
     // create an API response error to the user
     private static function createError( $error, $data = '' )
     {
+        $data = is_array( $data ) ? $data : [ $data ];
+
         return [
             'error' => $error,
-            'data' => [ $data ],
+            'data' => $data,
             'time' => time()
         ];
     }
