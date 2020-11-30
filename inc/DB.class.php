@@ -141,6 +141,35 @@ class DB
     }
 
 
+    // find objects in database with multiple where conditions
+    public function whereMultiAnd( $conditions )
+    {
+        return array_filter( $this->data, function( $object ) use ( $conditions )
+        {
+
+            $flg = true;
+
+            foreach( $conditions as $key => $value )
+            {
+                // callback condition
+                if( is_callable( $value ) )
+                {
+                    $flg = $flg && $value( $object->$key );
+                }
+
+                // regular condition
+                else
+                {
+                    $flg = $flg && property_exists( $object, $key ) && $object->{ $key } == $value;
+                }
+            }
+
+            return $flg;
+
+        });
+    }
+
+
 
     /**
      * Utils
