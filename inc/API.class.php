@@ -26,6 +26,11 @@ class API
 
             case 'logout':
                 self::handleLogout();
+                break;
+
+            case 'get-online-users':
+                self::getOnlineUsers();
+                break;
 
             default:
                 HTTP::_404();
@@ -161,6 +166,25 @@ class API
         setcookie( 'login', '', time() - 3600, '/' );
 
         $message = self::createMessage( 'Logged out successfully' );
+        HTTP::_200( $message );
+    }
+
+
+    // get all online users
+    private static function getOnlineUsers()
+    {
+        $results = DB::getInstance()->where( 'isOnline', true );
+
+        $keys = [
+            'email',
+            'loggedAt',
+            'ip'
+        ];
+
+        // remove unnecessary keys
+        $results = array_map( fn( $result ) => filterObjectKeys( $result, $keys ), $results );
+
+        $message = self::createMessage( 'Found '. sizeof( $results ) .' result(s)', $results );
         HTTP::_200( $message );
     }
 
