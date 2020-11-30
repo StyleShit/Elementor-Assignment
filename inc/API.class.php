@@ -69,9 +69,10 @@ class API
          */
         $user = DB::getInstance()->insert([
 
-            'email'  => $_POST['email'],
-            'password'  => password_hash( $_POST['password'], PASSWORD_DEFAULT ),
-            'isOnline'  => false
+            'email'         => $_POST['email'],
+            'password'      => password_hash( $_POST['password'], PASSWORD_DEFAULT ),
+            'isOnline'      => false,
+            'loginsCount'   => 0
 
         ]);
 
@@ -112,8 +113,8 @@ class API
         // find user by credentials
         $results = DB::getInstance()->whereMultiAnd([
 
-            'email' => $_POST['email'],
-            'password' => fn( $hash ) => password_verify( $_POST['password'], $hash )
+            'email'     => $_POST['email'],
+            'password'  => fn( $hash ) => password_verify( $_POST['password'], $hash )
             
         ]);
 
@@ -128,6 +129,7 @@ class API
         $user = $results[0];
         self::setUserOnline( $user, true );
         self::setUserEnvData( $user );
+        self::increaseUserLoginCount( $user );
 
 
         $_SESSION['login'] = $user;
@@ -174,6 +176,14 @@ class API
         $user->userAgent    = $_SERVER['HTTP_USER_AGENT'];
         $user->ip           = $_SERVER['REMOTE_ADDR'];
 
+        DB::getInstance()->update( $user->id, $user );
+    }
+
+
+    // increase the user logins count by 1
+    private static function increaseUserLoginCount( $user )
+    {
+        $user->loginsCount++;
         DB::getInstance()->update( $user->id, $user );
     }
 }
