@@ -63,11 +63,11 @@ class API
 
             'userName'  => $_POST['user-name'],
             'password'  => password_hash( $_POST['password'], PASSWORD_DEFAULT ),
-            'isOnline'  => true,
-            'userAgent' => $_SERVER['HTTP_USER_AGENT'],
-            'ip'        => $_SERVER['REMOTE_ADDR']
+            'isOnline'  => false
 
         ]);
+
+        self::setUserEnvData( $user );
 
 
         // prevent sending the password in the response
@@ -98,5 +98,23 @@ class API
             'data' => [ $data ],
             'time' => time()
         ];
+    }
+
+
+    // set in the database if the user is online
+    private static function setUserOnline( $user, $isOnline )
+    {
+        $user->isOnline = $isOnline;
+        DB::getInstance()->update( $user->id, $user );
+    }
+
+
+    // set the user environment data ( IP & UA )
+    private static function setUserEnvData( $user )
+    {
+        $user->userAgent    = $_SERVER['HTTP_USER_AGENT'];
+        $user->ip           = $_SERVER['REMOTE_ADDR'];
+
+        DB::getInstance()->update( $user->id, $user );
     }
 }
