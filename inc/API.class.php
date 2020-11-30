@@ -24,6 +24,9 @@ class API
                 self::handleLogin();
                 break;
 
+            case 'logout':
+                self::handleLogout();
+
             default:
                 HTTP::_404();
                 break;
@@ -136,6 +139,27 @@ class API
 
 
         $message = self::createMessage( 'Logged in successfully' );
+        HTTP::_200( $message );
+    }
+
+
+    // handle user logout
+    private static function handleLogout()
+    {
+        if( isset( $_COOKIE['login'] ) )
+        {
+            $user = json_decode( $_COOKIE['login'] );
+
+            // set user as offline on logout
+            if( $user->id )
+            {
+                self::setUserOnline( $user, false );
+            }
+        }
+
+        setcookie( 'login', '', time() - 3600, '/' );
+
+        $message = self::createMessage( 'Logged out successfully' );
         HTTP::_200( $message );
     }
 
