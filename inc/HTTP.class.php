@@ -10,7 +10,7 @@ class HTTP
         header('Content-Type: application/json');
     }
 
-    
+
     public static function _200( $message = [] )
     {
         self::json();
@@ -39,6 +39,14 @@ class HTTP
     {
         self::json();
         header( 'HTTP/1.0 400 Bad Request' );
+        die( json_encode( $message ) );
+    }
+
+
+    public static function _409( $message = [] )
+    {
+        self::json();
+        header( 'HTTP/1.0 409 Conflict' );
         die( json_encode( $message ) );
     }
 }
