@@ -130,6 +130,7 @@ class API
         // set user as online & grab their data
         $user = $results[0];
         self::setUserOnline( $user, true );
+        self::setUserLoginTime( $user );
         self::setUserEnvData( $user );
         self::increaseUserLoginCount( $user );
 
@@ -190,6 +191,14 @@ class API
     private static function setUserOnline( $user, $isOnline )
     {
         $user->isOnline = $isOnline;
+        DB::getInstance()->update( $user->id, $user );
+    }
+
+
+    // set user login time to current timestamp
+    private static function setUserLoginTime( $user )
+    {
+        $user->loggedAt = time();
         DB::getInstance()->update( $user->id, $user );
     }
 
