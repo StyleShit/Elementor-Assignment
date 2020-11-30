@@ -32,6 +32,10 @@ class API
                 self::getOnlineUsers();
                 break;
 
+            case 'get-user':
+                self::getUserById();
+                break;
+
             default:
                 HTTP::_404();
                 break;
@@ -189,6 +193,31 @@ class API
     }
 
 
+    // get user by their id
+    private static function getUserById()
+    {
+        if( !isset( $_GET['user-id'] ) || empty( $_GET['user-id'] ) )
+        {
+            $error = self::createError( 'User ID is required' );
+            HTTP::_400( $error );
+        }
+
+        $userId = trim( $_GET['user-id'] );
+        $results = DB::getInstance()->where( 'id', $userId );
+
+        if( sizeof( $results ) == 0)
+        {
+            $error = self::createError( 'User not found' );
+            HTTP::_404( $error );
+        }
+
+        $user = filterObjectKeys( $results[0], [ 'email', 'userAgent', 'createdAt', 'loginsCount' ] );
+
+        $message = self::createMessage( 'User found', $user );
+        HTTP::_200( $message );
+    }
+
+    
     // create an API response message to the user
     private static function createMessage( $message, $data = '' )
     {
