@@ -39,7 +39,7 @@ class API
          * Validations
          */
         $requiredFields = [
-            'user-name',
+            'email',
             'password',
             'password-confirm'
         ];
@@ -56,18 +56,20 @@ class API
             HTTP::_400( $error );
         }
 
-        if( sizeof( DB::getInstance()->where( 'userName', $_POST['user-name'] ) ) > 0 )
+        if( sizeof( DB::getInstance()->where( 'email', $_POST['email'] ) ) > 0 )
         {
-            $error = self::createError( 'User name already exists' );
+            $error = self::createError( 'Email already exists' );
             HTTP::_409( $error );
         }
+
+        // TODO: validate email
 
         /**
          * Create user
          */
         $user = DB::getInstance()->insert([
 
-            'userName'  => $_POST['user-name'],
+            'email'  => $_POST['email'],
             'password'  => password_hash( $_POST['password'], PASSWORD_DEFAULT ),
             'isOnline'  => false
 
@@ -92,7 +94,7 @@ class API
          * Validations
          */
         $requiredFields = [
-            'user-name',
+            'email',
             'password'
         ];
 
@@ -110,7 +112,7 @@ class API
         // find user by credentials
         $results = DB::getInstance()->whereMultiAnd([
 
-            'userName' => $_POST['user-name'],
+            'email' => $_POST['email'],
             'password' => fn( $hash ) => password_verify( $_POST['password'], $hash )
             
         ]);
