@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 require_once( __DIR__ . '/functions.php' );
 require_once( __DIR__ . '/HTTP.class.php' );
@@ -132,7 +131,8 @@ class API
         self::increaseUserLoginCount( $user );
 
 
-        $_SESSION['login'] = $user;
+        unset( $user->password );
+        setcookie( 'login', json_encode( $user ), time() + 3600, '/' );
 
 
         $message = self::createMessage( 'Logged in successfully' );
