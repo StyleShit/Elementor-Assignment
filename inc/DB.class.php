@@ -122,7 +122,7 @@ class DB
     // find objects in database by key & value
     public function where( $key, $value )
     {
-        return array_filter( $this->data, function( $object ) use ( $key, $value )
+        $results = array_filter( $this->data, function( $object ) use ( $key, $value )
         {
 
             // callback condition
@@ -138,13 +138,15 @@ class DB
             }
 
         });
+
+        return array_values( $results );
     }
 
 
     // find objects in database with multiple where conditions
     public function whereMultiAnd( $conditions )
     {
-        return array_filter( $this->data, function( $object ) use ( $conditions )
+        $results = array_filter( $this->data, function( $object ) use ( $conditions )
         {
 
             $flg = true;
@@ -167,6 +169,8 @@ class DB
             return $flg;
 
         });
+
+        return array_values( $results );
     }
 
 
