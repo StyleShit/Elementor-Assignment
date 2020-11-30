@@ -66,11 +66,12 @@ class DB
         $object['id'] = uniqid( '_' );
         $object['createdAt'] = time();
         $object['updatedAt'] = time();
+        $object = ( object ) $object;
 
-        $this->data[] = ( object ) $object;
+        $this->data[] = $object;
         $this->save();
 
-        return $this;
+        return $object;
     }
 
 
