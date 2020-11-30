@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once( __DIR__ . '/functions.php' );
 require_once( __DIR__ . '/HTTP.class.php' );
 require_once( __DIR__ . '/DB.class.php' );
@@ -17,6 +19,10 @@ class API
         {
             case 'register':
                 self::handleRegistration();
+                break;
+
+            case 'login':
+                self::handleLogin();
                 break;
 
             default:
@@ -76,6 +82,57 @@ class API
         $message = self::createMessage( 'Created successfully', $user );
         HTTP::_201( $message );
 
+    }
+
+
+    // handle user login
+    private static function handleLogin()
+    {
+        /**
+         * Validations
+         */
+        $requiredFields = [
+            'user-name',
+            'password'
+        ];
+
+        if( sizeof( checkRequired( $_POST, $requiredFields ) ) != 0 )
+        {
+            $error = self::createError( 'Please fill all required fields' );
+            HTTP::_400( $error );
+        }
+
+
+        /**
+         * Login user
+         */
+
+        // find user by credentials
+        $results = DB::getInstance()->whereMultiAnd([
+
+            'userName' => $_POST['user-name'],
+            'password' => fn( $hash ) => password_verify( $_POST['password'], $hash )
+            
+        ]);
+
+        if( sizeof( $results ) != 1 )
+        {
+            $error = self::createError( 'Wrong credentials' );
+            HTTP::_401( $error );
+        }
+
+
+        // set user as online & grab their data
+        $user = $results[0];
+        self::setUserOnline( $user, true );
+        self::setUserEnvData( $user );
+
+
+        $_SESSION['login'] = $user;
+
+
+        $message = self::createMessage( 'Logged in successfully' );
+        HTTP::_200( $message );
     }
 
 
