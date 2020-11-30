@@ -125,7 +125,17 @@ class DB
         return array_filter( $this->data, function( $object ) use ( $key, $value )
         {
 
-            return property_exists( $object, $key ) && $object->{ $key } == $value;
+            // callback condition
+            if( is_callable( $value ) )
+            {
+                return $value( $object->$key );
+            }
+
+            // regular condition
+            else
+            {
+                return property_exists( $object, $key ) && $object->{ $key } == $value;
+            }
 
         });
     }
