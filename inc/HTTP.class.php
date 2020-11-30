@@ -42,6 +42,14 @@ class HTTP
         die( json_encode( $message ) );
     }
 
+    
+    public static function _401( $message = [] )
+    {
+        self::json();
+        header( 'HTTP/1.0 401 Unauthorized' );
+        die( json_encode( $message ) );
+    }
+
 
     public static function _409( $message = [] )
     {
