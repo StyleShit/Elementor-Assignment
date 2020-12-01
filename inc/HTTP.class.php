@@ -18,6 +18,13 @@ class HTTP
         die;
     }
 
+    public static function _302( $url )
+    {
+        header( 'HTTP/1.0 302 Found' );
+        header( 'Location: ' . $url );
+        die;
+    }
+
     public static function _200( $message = [] )
     {
         self::json();
