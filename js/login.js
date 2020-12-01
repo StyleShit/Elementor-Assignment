@@ -2,6 +2,7 @@
 const email     = _( '#email' );
 const password  = _( '#password' );
 const loginForm = _( '.login-form' );
+const loader    = _( '.loader' );
 
 
 // handle form submit using AJAX
@@ -16,12 +17,15 @@ loginForm.addEventListener( 'submit', ( e ) => {
 
     }
 
+    loader.classList.add( 'shown' );
+
     _apiLoginUser( data )
 
         .then( res => {
 
             if( res.error )
             {
+                loader.classList.remove( 'shown' );
                 alert( res.error );
                 return;
             }

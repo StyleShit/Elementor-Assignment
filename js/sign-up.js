@@ -4,6 +4,7 @@ const userName          = _( '#user-name' );
 const password          = _( '#password' );
 const passwordConfirm   = _( '#password-confirm' );
 const signUpForm        = _( '.sign-up-form' );
+const loader            = _( '.loader' );
 
 
 // handle form submit using AJAX
@@ -33,12 +34,15 @@ signUpForm.addEventListener( 'submit', ( e ) => {
         return;
     }
 
+    loader.classList.add( 'shown' );
+
     _apiRegisterUser( data )
 
         .then( res => {
 
             if( res.error )
             {
+                loader.classList.remove( 'shown' );
                 alert( res.error );
                 return;
             }

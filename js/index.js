@@ -1,5 +1,6 @@
 const onlineUsers       = _( '.online-users tbody' );
 const updatedAt         = _( '.last-updated span' );
+const updateLoader      = _( '.update-loader' );
 const userName          = _( '.user-name' );
 const logoutButton      = _( '.logout-button' );
 const modal             = _( '.modal' );
@@ -7,6 +8,7 @@ const closeModalButton  = _( '.close-modal-button' );
 const modalTitle        = _( '.modal-title h2' );
 const modalContent      = _( '.modal-content p' );
 const overlay           = _( '.overlay' );
+const dashboardLoader   = _( '.dashboard-loader' );
 
 
 /**
@@ -51,6 +53,8 @@ logoutButton.addEventListener( 'click', ( e ) => {
 
     e.preventDefault();
 
+    dashboardLoader.classList.add( 'shown' );
+    
     _apiLogoutUser()
         .then( res => {
 
@@ -72,6 +76,8 @@ closeModalButton.addEventListener( 'click', () => { hideModal(); });
 
 // fetch online users into the table
 const fetchOnlineUsers = () => {
+
+    updateLoader.classList.add( 'shown' );
 
     const currentUser = _apiGetCurrentUser();
 
@@ -106,6 +112,13 @@ const fetchOnlineUsers = () => {
 
             bindUserClick();
 
+            // use timeout to prevent instant loader removal
+            setTimeout( () => {
+
+                updateLoader.classList.remove( 'shown' );
+
+            }, 500 );
+
         });
 
 };
@@ -133,8 +146,12 @@ const bindUserClick = () => {
 // show user data in a modal by id
 const showUserModal = ( id ) => {
 
+    dashboardLoader.classList.add( 'shown' );
+    
     _apiGetUserData({ id })
         .then( res => {
+
+            dashboardLoader.classList.remove( 'shown' );
 
             if( !res.error )
             {
@@ -152,8 +169,6 @@ const showUserModal = ( id ) => {
             }
 
         });
-
-    // TODO: implement
 
 }
 

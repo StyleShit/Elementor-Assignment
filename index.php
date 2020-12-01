@@ -36,6 +36,8 @@
 
         <div class="dashboard-container">
 
+            <div class="loader loader-full-screen dashboard-loader"></div>
+
             <div>
                 <h1>Welcome, <span class="user-name"></span>!</h1>
 
@@ -54,6 +56,7 @@
                         <tr>
                             <th class="last-updated" colspan="3">
                                 Last Updated: <span>N/A</span>
+                                <div class="loader update-loader"></div>
                             </th>
                         </tr>
                     </thead>

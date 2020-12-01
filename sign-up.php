@@ -24,6 +24,8 @@
 
         <div class="form-container">
 
+            <div class="loader loader-full-size"></div>
+
             <h1 class="form-title">Sign Up:</h1>
         
             <form class="sign-up-form">

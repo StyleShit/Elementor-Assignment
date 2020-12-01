@@ -24,6 +24,8 @@
 
         <div class="form-container">
 
+            <div class="loader loader-full-size"></div>
+
             <h1 class="form-title">Login:</h1>
         
             <form class="login-form">
