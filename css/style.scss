@@ -52,7 +52,9 @@ a
     width: 85vw;
     max-width: 500px;
     max-height: 800px;
+    min-height: 550px;
     padding: 5rem 2rem;
+    margin: 7.5vh auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,6 +110,11 @@ a
             }
         }
     }
+
+    & p
+    {
+        text-align: center;
+    }
 }
 
 
@@ -120,20 +127,26 @@ a
     background-color: $primary-color;
     color: #FFF;
     padding: 5rem 2rem;
+    margin: 5vh auto;
     width: 90vw;
     min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    row-gap: 7rem;
+    row-gap: 5vmin;
     box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+
+    & h1
+    {
+        text-align: center;
+    }
 
     & .logout-button
     {
         background-color: $secondary-color;
         display: table;
-        margin: .2rem auto 0;
+        margin: .5rem auto 0;
         padding: .5rem 1rem;
         text-decoration: none;
         border-radius: 100rem;
@@ -150,45 +163,53 @@ a
         }
     }
 
-    & table
+    & .online-users
     {
-        border-collapse: collapse;
-        background-color: #FFF;
-        box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+        overflow-x: auto;
+        width: 100%;
 
-        & td,
-        & th
+        & table
         {
-            padding: 1rem 1.5rem;
-            color: $secondary-color;
-            border: none;
-            transition: .3s all;
-        }
+            border-collapse: collapse;
+            background-color: #FFF;
+            box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+            max-width: 100%;
+            margin: auto;
 
-        & th
-        {
-            color: #FFF;
-            background-color: $secondary-color-darker;
-
-            &.last-updated
+            & td,
+            & th
             {
-                font-size: .8em;
-                padding: .5rem;
-                font-weight: normal;
-                color: rgba( 255,255,255,.5);
+                padding: 1rem 1.5rem;
+                color: $secondary-color;
+                border: none;
+                transition: .3s all;
             }
-        }
 
-        & tr:nth-child( even ) td
-        {
-            background-color: rgba( 0,0,0,.1 );
-        }
+            & th
+            {
+                color: #FFF;
+                background-color: $secondary-color-darker;
 
-        & tr:hover td
-        {
-            cursor: pointer;
-            color: #FFF;
-            background-color: $primary-color;
+                &.last-updated
+                {
+                    font-size: .8em;
+                    padding: .5rem;
+                    font-weight: normal;
+                    color: rgba( 255,255,255,.5);
+                }
+            }
+
+            & tr:nth-child( even ) td
+            {
+                background-color: rgba( 0,0,0,.1 );
+            }
+
+            & tr:hover td
+            {
+                cursor: pointer;
+                color: #FFF;
+                background-color: $primary-color;
+            }
         }
     }
 }
@@ -420,4 +441,42 @@ a
 {
     from { opacity: 1; pointer-events: none; }
     to { opacity: 0; pointer-events: none; }
+}
+
+
+/*
+    Media Queries
+*/
+
+@media screen and ( max-width: 600px )
+{
+    .dashboard-container table
+    {
+        & th,
+        & td
+        {
+            padding: .3rem .5rem;
+            font-size: .8rem;
+        }
+    }
+
+    .modal
+    {
+        & .modal-title h2
+        {
+            font-size: 1rem;
+        }
+
+        & .modal-content
+        {
+            padding: 4rem 2rem;
+            font-size: .8rem;
+        }
+    }
+
+    .form-container
+    {
+        padding: 2rem;
+        row-gap: 2rem;
+    }
 }
