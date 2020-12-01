@@ -1,3 +1,15 @@
+<?php
+
+    require_once( './inc/API.class.php' );
+    require_once( './inc/HTTP.class.php' );
+
+    if( !API::getAuthUser() )
+    {
+        HTTP::_302( 'login.php' );
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,6 +73,9 @@
                 </table>
             </div>
         </div>
+
+        <script src="./js/functions.js"></script>
+        <script src="./js/api.js"></script>
     </body>
 
 </html>

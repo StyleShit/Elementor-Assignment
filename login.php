@@ -1,3 +1,15 @@
+<?php
+
+    require_once( './inc/API.class.php' );
+    require_once( './inc/HTTP.class.php' );
+
+    if( API::getAuthUser() )
+    {
+        HTTP::_302( 'index.php' );
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
