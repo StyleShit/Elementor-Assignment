@@ -38,6 +38,9 @@
 
         </div>
 
+        <script src="./js/functions.js"></script>
+        <script src="./js/api.js"></script>
+        <script src="./js/login.js"></script>
     </body>
 
 </html>
