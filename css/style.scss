@@ -115,11 +115,12 @@ a
     color: #FFF;
     padding: 5rem 2rem;
     width: 90vw;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    row-gap: 3rem;
+    row-gap: 7rem;
     box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
 
     & .logout-button

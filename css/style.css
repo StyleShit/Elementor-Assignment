@@ -115,6 +115,7 @@ a {
   color: #FFF;
   padding: 5rem 2rem;
   width: 90vw;
+  min-height: 90vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -128,7 +129,7 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  row-gap: 3rem;
+  row-gap: 7rem;
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
