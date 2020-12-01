@@ -21,6 +21,19 @@
     </head>
 
     <body>
+        <div class="modal">
+            <div class="modal-title">
+                <h2></h2>
+                <button class="close-modal-button"></button>
+            </div>
+
+            <div class="modal-content">
+                <p></p>
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
         <div class="dashboard-container">
 
             <div>

@@ -191,4 +191,113 @@ a {
   color: #FFF;
   background-color: #3d5af1;
 }
+
+/*
+    Modal
+*/
+.modal {
+  position: fixed;
+  height: 90vh;
+  width: 90vw;
+  max-width: 800px;
+  max-height: 500px;
+  background-color: #FFF;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.modal.shown {
+  pointer-events: all;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.modal .modal-title {
+  background-color: #303a52;
+  color: #FFF;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.modal .modal-title .close-modal-button {
+  padding: .5rem;
+  background: none;
+  position: absolute;
+  border: none;
+  right: 1.5rem;
+  top: 1.5rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.modal .modal-title .close-modal-button::before, .modal .modal-title .close-modal-button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 140%;
+  background-color: currentColor;
+  left: 0;
+  bottom: 0;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.modal .modal-title .close-modal-button::after {
+  left: auto;
+  right: 0;
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.modal .modal-title .close-modal-button:hover {
+  color: #FFF;
+}
+
+.modal .modal-content {
+  color: #303a52;
+  padding: 5rem;
+  line-height: 2;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.overlay.shown {
+  opacity: 1;
+  pointer-events: all;
+}
 /*# sourceMappingURL=style.css.map */

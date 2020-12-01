@@ -185,3 +185,110 @@ a
         }
     }
 }
+
+
+/*
+    Modal
+*/
+
+.modal
+{
+    position: fixed;
+    height: 90vh;
+    width: 90vw;
+    max-width: 800px;
+    max-height: 500px;
+    background-color: #FFF;
+    box-shadow: 0 0 10px 0 rgba( 0,0,0,.4 );
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY( -20px );
+    transition: .3s all;
+
+    &.shown
+    {
+        pointer-events: all;
+        opacity: 1;
+        transform: translateY( 0 );
+    }
+
+    & .modal-title
+    {
+        background-color: $secondary-color;
+        color: #FFF;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+
+        & .close-modal-button
+        {
+            padding: .5rem;
+            background: none;
+            position: absolute;
+            border: none;
+            right: 1.5rem;
+            top: 1.5rem;
+            cursor: pointer;
+            color: rgba( 255,255,255,.7 );
+
+            &::before,
+            &::after
+            {
+                content: '';
+                display: block;
+                position: absolute;
+                height: 2px;
+                width: 140%;
+                background-color: currentColor;
+                left: 0;
+                bottom: 0;
+                transform-origin: left;
+                transform: rotate( -45deg );
+                transition: .3s all;
+            }
+
+            &::after
+            {
+                left: auto;
+                right: 0;
+                transform-origin: right;
+                transform: rotate( 45deg );
+            }
+
+            &:hover
+            {
+                color: #FFF;
+            }
+        }
+    }
+
+    & .modal-content
+    {
+        color: $secondary-color;
+        padding: 5rem;
+        line-height: 2;
+    }
+}
+
+.overlay
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba( 0,0,0,.4 );
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s all;
+
+    &.shown
+    {
+        opacity: 1;
+        pointer-events: all;
+    }
+}

@@ -1,8 +1,17 @@
-const onlineUsers   = _( '.online-users tbody' );
-const updatedAt     = _( '.last-updated span' );
-const userName      = _( '.user-name' );
-const logoutButton  = _( '.logout-button' );
+const onlineUsers       = _( '.online-users tbody' );
+const updatedAt         = _( '.last-updated span' );
+const userName          = _( '.user-name' );
+const logoutButton      = _( '.logout-button' );
+const modal             = _( '.modal' );
+const closeModalButton  = _( '.close-modal-button' );
+const modalTitle        = _( '.modal-title h2' );
+const modalContent      = _( '.modal-content p' );
+const overlay           = _( '.overlay' );
 
+
+/**
+ * Event listeners
+ */
 window.addEventListener( 'load', ( e ) => {
 
     const currentUser = _apiGetCurrentUser();
@@ -51,6 +60,15 @@ logoutButton.addEventListener( 'click', ( e ) => {
 
 });
 
+
+// close modal
+overlay.addEventListener( 'click', () => { hideModal(); });
+closeModalButton.addEventListener( 'click', () => { hideModal(); });
+
+
+/**
+ * Functions
+ */
 
 // fetch online users into the table
 const fetchOnlineUsers = () => {
@@ -120,11 +138,36 @@ const showUserModal = ( id ) => {
 
             if( !res.error )
             {
-                console.log( res.data[0] );
+                showModal();
+
+                const userData = res.data[0];
+                const registrationDate = new Date( userData.createdAt * 1000 ).toLocaleDateString();
+                
+                modalTitle.innerText = 'Viewing: ' + userData.email;
+                modalContent.innerHTML = `
+                    <strong>User-Agent: </strong>${ userData.userAgent }<br />
+                    <strong>Resgistration Date: </strong>${ registrationDate }<br />
+                    <strong>Logins Count: </strong>${ userData.loginsCount }<br />
+                `;
             }
 
         });
 
     // TODO: implement
 
+}
+
+
+const showModal = () => {
+
+    modal.classList.add( 'shown' );
+    overlay.classList.add( 'shown' );
+
+}
+
+const hideModal = () => {
+
+    modal.classList.remove( 'shown' );
+    overlay.classList.remove( 'shown' );
+    
 }
