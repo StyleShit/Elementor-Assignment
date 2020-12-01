@@ -31,7 +31,7 @@ const fetchOnlineUsers = () => {
                 const loggedAt = new Date( user.loggedAt * 1000 ).toLocaleString();
 
                 const row = `
-                    <tr>
+                    <tr data-user-id="${ user.id }">
                         <td>${ user.email }</td>
                         <td>${ loggedAt  }</td>
                         <td>${ user.ip }</td>

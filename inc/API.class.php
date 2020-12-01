@@ -222,6 +222,7 @@ class API
         $results = DB::getInstance()->where( 'isOnline', true );
 
         $keys = [
+            'id',
             'email',
             'loggedAt',
             'ip'
