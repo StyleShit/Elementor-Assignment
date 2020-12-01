@@ -1,6 +1,7 @@
 const onlineUsers   = _( '.online-users tbody' );
 const updatedAt     = _( '.last-updated span' );
 const userName      = _( '.user-name' );
+const logoutButton  = _( '.logout-button' );
 
 window.addEventListener( 'load', ( e ) => {
 
@@ -32,6 +33,21 @@ window.addEventListener( 'beforeunload', async ( e ) => {
     await _apiGoOffline();
 
     return '';
+
+});
+
+
+// logout user
+logoutButton.addEventListener( 'click', ( e ) => {
+
+    e.preventDefault();
+
+    _apiLogoutUser()
+        .then( res => {
+
+            window.location = './';
+
+        });
 
 });
 

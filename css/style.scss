@@ -122,9 +122,25 @@ a
     row-gap: 3rem;
     box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
 
-    & h1
+    & .logout-button
     {
-        // color: $primary-color;
+        background-color: $secondary-color;
+        display: table;
+        margin: .2rem auto 0;
+        padding: .5rem 1rem;
+        text-decoration: none;
+        border-radius: 100rem;
+        font-weight: normal;
+        font-size: .8em;
+        box-shadow: 0 0 10px 0 rgba( 0,0,0,.4 );
+        transition: .3s all;
+
+        &:hover,
+        &:focus
+        {
+            background-color: $secondary-color-darker;
+            box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+        }
     }
 
     & table

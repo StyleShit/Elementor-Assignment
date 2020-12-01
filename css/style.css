@@ -133,6 +133,27 @@ a {
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
 
+.dashboard-container .logout-button {
+  background-color: #303a52;
+  display: table;
+  margin: .2rem auto 0;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  border-radius: 100rem;
+  font-weight: normal;
+  font-size: .8em;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.dashboard-container .logout-button:hover, .dashboard-container .logout-button:focus {
+  background-color: #202736;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+}
+
 .dashboard-container table {
   border-collapse: collapse;
   background-color: #FFF;

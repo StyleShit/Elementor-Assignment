@@ -26,7 +26,7 @@
             <div>
                 <h1>Welcome, <span class="user-name"></span>!</h1>
 
-                <a href="#">Logout</a>
+                <a href="#" class="logout-button">Logout</a>
             </div>
 
             <div class="online-users">
