@@ -47,6 +47,45 @@ const fetchOnlineUsers = () => {
             onlineUsers.innerHTML = output;
             updatedAt.innerText = new Date().toLocaleTimeString();
 
+            bindUserClick();
+
         });
 
 };
+
+
+// add click event to users rows
+const bindUserClick = () => {
+
+    const rows   = __( '.online-users tbody tr' );
+
+    rows.forEach( ( row ) => {
+
+        row.addEventListener( 'click', () => {
+
+            const userId = row.dataset.userId;
+            showUserModal( userId );
+
+        });
+
+    });
+
+}
+
+
+// show user data in a modal by id
+const showUserModal = ( id ) => {
+
+    _apiGetUserData({ id })
+        .then( res => {
+
+            if( !res.error )
+            {
+                console.log( res.data[0] );
+            }
+
+        });
+
+    // TODO: implement
+
+}
