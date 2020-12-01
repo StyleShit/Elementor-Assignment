@@ -28,6 +28,14 @@ class API
                 self::handleLogout();
                 break;
 
+            case 'go-online':
+                self::goOnline();
+                break;
+
+            case 'go-offline':
+                self::goOffline();
+                break;
+
             case 'get-online-users':
                 self::getOnlineUsers();
                 break;
@@ -162,6 +170,34 @@ class API
 
         $message = self::createMessage( 'Logged out successfully' );
         HTTP::_200( $message );
+    }
+
+
+    // set current logged in user as online
+    private static function goOnline( $isOnline = true, $showSuccessMessage = true)
+    {
+        $user = self::getAuthUser();
+
+        if( !$user )
+        {
+            $error = self::createError( 'User is not logged in' );
+            HTTP::_401( $error );
+        }
+
+        self::setUserOnline( $user, $isOnline );
+
+        if( $showSuccessMessage )
+        {
+            $message = self::createMessage( 'Successfully set online state to: ' . ( $isOnline ? 'true' : 'false' ) );
+            HTTP::_200( $message );
+        }
+    }
+
+
+    // set current logged in user as offline
+    private static function goOffline( $showSuccessMessage = true )
+    {
+        self::goOnline( false, $showSuccessMessage );
     }
 
 
