@@ -156,21 +156,27 @@ class API
     // handle user logout
     private static function handleLogout()
     {
-        if( isset( $_COOKIE['login'] ) )
-        {
-            $user = json_decode( $_COOKIE['login'] );
-
-            // set user as offline on logout
-            if( $user->id )
-            {
-                self::setUserOnline( $user, false );
-            }
-        }
+        self::goOffline( false );
 
         setcookie( 'login', '', time() - 3600, '/' );
 
         $message = self::createMessage( 'Logged out successfully' );
         HTTP::_200( $message );
+    }
+
+
+    // get currently authenticated user
+    private static function getAuthUser()
+    {
+        if( isset( $_COOKIE['login'] ) )
+        {
+            $user = json_decode( $_COOKIE['login'] );
+
+            if( $user->id )
+                return $user;
+        }
+
+        return null;
     }
 
 
