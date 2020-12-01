@@ -87,7 +87,7 @@ class API
             HTTP::_400( $error );
         }
 
-        if( sizeof( DB::getInstance()->where( 'email', $email ) ) > 0 )
+        if( sizeof( DB::table( 'users' )->where( 'email', $email ) ) > 0 )
         {
             $error = self::createError( 'Email already exists' );
             HTTP::_409( $error );
@@ -97,7 +97,7 @@ class API
         /**
          * Create user
          */
-        $user = DB::getInstance()->insert([
+        $user = DB::table( 'users' )->insert([
 
             'email'         => $email,
             'userName'      => $userName,
@@ -145,7 +145,7 @@ class API
         $password = trim( $_POST['password'] );
 
         // find user by credentials
-        $results = DB::getInstance()->whereMultiAnd([
+        $results = DB::table( 'users' )->whereMultiAnd([
 
             'email'     => $email,
             'password'  => fn( $hash ) => password_verify( $password, $hash )
@@ -234,7 +234,7 @@ class API
     // get all online users
     private static function getOnlineUsers()
     {
-        $results = DB::getInstance()->where( 'isOnline', true );
+        $results = DB::table( 'users' )->where( 'isOnline', true );
 
         $keys = [
             'id',
@@ -262,7 +262,7 @@ class API
         }
 
         $userId = trim( $_GET['user-id'] );
-        $results = DB::getInstance()->where( 'id', $userId );
+        $results = DB::table( 'users' )->where( 'id', $userId );
 
         if( sizeof( $results ) == 0)
         {
@@ -307,7 +307,7 @@ class API
     private static function setUserOnline( $user, $isOnline )
     {
         $user->isOnline = $isOnline;
-        DB::getInstance()->update( $user->id, $user );
+        DB::table( 'users' )->update( $user->id, $user );
     }
 
 
@@ -315,7 +315,7 @@ class API
     private static function setUserLoginTime( $user )
     {
         $user->loggedAt = time();
-        DB::getInstance()->update( $user->id, $user );
+        DB::table( 'users' )->update( $user->id, $user );
     }
 
 
@@ -325,7 +325,7 @@ class API
         $user->userAgent    = $_SERVER['HTTP_USER_AGENT'];
         $user->ip           = $_SERVER['REMOTE_ADDR'];
 
-        DB::getInstance()->update( $user->id, $user );
+        DB::table( 'users' )->update( $user->id, $user );
     }
 
 
@@ -333,6 +333,6 @@ class API
     private static function increaseUserLoginCount( $user )
     {
         $user->loginsCount++;
-        DB::getInstance()->update( $user->id, $user );
+        DB::table( 'users' )->update( $user->id, $user );
     }
 }

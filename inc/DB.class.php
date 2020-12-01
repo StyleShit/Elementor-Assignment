@@ -52,6 +52,13 @@ class DB
     }
 
 
+    // alias of getInstance
+    public static function table( $table = 'users' )
+    {
+        return self::getInstance( $table );
+    }
+
+
     // write data from RAM to the database file
     public function save()
     {
