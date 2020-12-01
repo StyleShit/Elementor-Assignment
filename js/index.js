@@ -3,6 +3,8 @@ const updatedAt     = _( '.last-updated span' );
 
 window.addEventListener( 'load', ( e ) => {
 
+    // set user as online
+    _apiGoOnline();
 
     // fetch online users every 3 seconds
     fetchOnlineUsers();
