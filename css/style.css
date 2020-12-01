@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap");
+/*
+    Global Styles
+*/
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, Open Sans, Tahoma, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: #FFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: linear-gradient(45deg, #0f2027, #2c5364);
+  background-attachment: fixed;
+}
+
+a {
+  font-weight: bold;
+  color: inherit;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+/*
+    Forms
+*/
+.form-container {
+  height: 85vh;
+  width: 85vw;
+  max-width: 500px;
+  max-height: 800px;
+  padding: 5rem 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 5rem;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+  background-color: #3d5af1;
+  color: #FFF;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.form-container .form-title {
+  text-align: center;
+  margin: 0;
+  font-size: 2.8rem;
+}
+
+.form-container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.form-container form input {
+  outline: none;
+  font-family: inherit;
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: 100rem;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.form-container form input:focus, .form-container form input[type="submit"]:hover {
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form-container form input[type="submit"] {
+  font-size: 1.2rem;
+  background-color: #303a52;
+  color: #FFF;
+}
+
+.form-container form input[type="submit"]:hover, .form-container form input[type="submit"]:focus {
+  background-color: #202736;
+}
+
+/*
+    Dashboard
+*/
+.dashboard-container {
+  background-color: #3d5af1;
+  color: #FFF;
+  padding: 5rem 2rem;
+  width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 3rem;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-container table {
+  border-collapse: collapse;
+  background-color: #FFF;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-container table td,
+.dashboard-container table th {
+  padding: 1rem 1.5rem;
+  color: #303a52;
+  border: none;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+.dashboard-container table th {
+  color: #FFF;
+  background-color: #202736;
+}
+
+.dashboard-container table th.last-updated {
+  font-size: .8em;
+  padding: .5rem;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dashboard-container table tr:nth-child(even) td {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container table tr:hover td {
+  cursor: pointer;
+  color: #FFF;
+  background-color: #3d5af1;
+}
+/*# sourceMappingURL=style.css.map */

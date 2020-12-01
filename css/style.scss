@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+$primary-color: #3d5af1;
+$primary-color-darker: #2b43bb;
+$secondary-color: #303a52;
+$secondary-color-darker: #202736;
+
+
+/*
+    Global Styles
+*/
+
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, Open Sans, Tahoma, sans-serif;
+}
+
+body
+{
+    min-height: 100vh;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient( 45deg,#0f2027,#2c5364 );
+    background-attachment: fixed;
+}
+
+a
+{
+    font-weight: bold;
+    color: inherit;
+    transition: .3s all;
+}
+
+
+/*
+    Forms
+*/
+
+.form-container
+{
+    height: 85vh;
+    width: 85vw;
+    max-width: 500px;
+    max-height: 800px;
+    padding: 5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 5rem;
+    box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+    background-color: $primary-color;
+    color: #FFF;
+    text-shadow: 0 0 15px rgba( 0,0,0,.4 ), 0 0 5px rgba( 0,0,0,.5 );
+
+    & .form-title
+    {
+        text-align: center;
+        margin: 0;
+        font-size: 2.8rem;
+    }
+
+    & form
+    {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        width: 100%;
+        max-width: 300px;
+
+        & input
+        {
+            outline: none;
+            font-family: inherit;
+            border: none;
+            padding: .5rem 1rem;
+            border-radius: 100rem;
+            transition: .3s all;
+
+            &:focus,
+            &[type="submit"]:hover
+            {
+                box-shadow: 0 0 10px 0 rgba( 0,0,0,.5 );
+            }
+
+            &[type="submit"]
+            {
+                font-size: 1.2rem;
+                background-color: $secondary-color;
+                color: #FFF;
+            }
+
+            &[type="submit"]:hover,
+            &[type="submit"]:focus
+            {
+                background-color: $secondary-color-darker
+            }
+        }
+    }
+}
+
+
+/*
+    Dashboard
+*/
+
+.dashboard-container
+{
+    background-color: $primary-color;
+    color: #FFF;
+    padding: 5rem 2rem;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 3rem;
+    box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+
+    & h1
+    {
+        // color: $primary-color;
+    }
+
+    & table
+    {
+        border-collapse: collapse;
+        background-color: #FFF;
+        box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
+
+        & td,
+        & th
+        {
+            padding: 1rem 1.5rem;
+            color: $secondary-color;
+            border: none;
+            transition: .3s all;
+        }
+
+        & th
+        {
+            color: #FFF;
+            background-color: $secondary-color-darker;
+
+            &.last-updated
+            {
+                font-size: .8em;
+                padding: .5rem;
+                font-weight: normal;
+                color: rgba( 255,255,255,.5);
+            }
+        }
+
+        & tr:nth-child( even ) td
+        {
+            background-color: rgba( 0,0,0,.1 );
+        }
+
+        & tr:hover td
+        {
+            cursor: pointer;
+            color: #FFF;
+            background-color: $primary-color;
+        }
+    }
+}
