@@ -24,13 +24,13 @@ signUpForm.addEventListener( 'submit', ( e ) => {
     
     if( !isValidEmail( data.email ) )
     {
-        alert( 'Invalid email address' );
+        toast( 'Invalid email address', 'error' );
         return;
     }
 
     if( data.password !== data.passwordConfirm )
     {
-        alert( 'Passwords do not match' );
+        toast( 'Passwords do not match', 'error' );
         return;
     }
 
@@ -43,11 +43,13 @@ signUpForm.addEventListener( 'submit', ( e ) => {
             if( res.error )
             {
                 loader.classList.remove( 'shown' );
-                alert( res.error );
+                toast( res.error, 'error' );
                 return;
             }
             
-            window.location = './';
+            toast( 'Created successfully! You are being redirected', 'success' );
+
+            setTimeout( () => { window.location = './'; }, 3000 );
 
         });
 

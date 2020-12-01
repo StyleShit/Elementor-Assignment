@@ -26,7 +26,7 @@ loginForm.addEventListener( 'submit', ( e ) => {
             if( res.error )
             {
                 loader.classList.remove( 'shown' );
-                alert( res.error );
+                toast( res.error, 'error' );
                 return;
             }
             

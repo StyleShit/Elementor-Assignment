@@ -365,6 +365,48 @@ a
 
 
 /*
+    Toasts
+*/
+.toasts-container
+{
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    max-width: 400px;
+    padding: 10px;
+
+
+    & .toast
+    {
+        background-color: #3399ff;
+        color: #FFF;
+        font-family: Poppins;
+        padding: 1rem 2rem;
+        box-shadow: 0 0 10px 0 rgba( 0,0,0,.2 );
+        border-radius: .5rem;
+        margin-bottom: 15px;
+
+        &.toast-success
+        {
+            background-color: #4caf50;
+        }
+
+        &.toast-error
+        {
+            background-color: #d32f2f;
+        }
+
+        &.fading-out
+        {
+            animation: .3s fade-out forwards;
+        }
+    }
+}
+
+
+/*
     Animations
 */
 
@@ -372,4 +414,10 @@ a
 {
     from { transform: rotate( 0 ); }
     to { transform: rotate( 360deg ); }
+}
+
+@keyframes fade-out
+{
+    from { opacity: 1; pointer-events: none; }
+    to { opacity: 0; pointer-events: none; }
 }

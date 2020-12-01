@@ -370,6 +370,43 @@ a {
 }
 
 /*
+    Toasts
+*/
+.toasts-container {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  max-width: 400px;
+  padding: 10px;
+}
+
+.toasts-container .toast {
+  background-color: #3399ff;
+  color: #FFF;
+  font-family: Poppins;
+  padding: 1rem 2rem;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: .5rem;
+  margin-bottom: 15px;
+}
+
+.toasts-container .toast.toast-success {
+  background-color: #4caf50;
+}
+
+.toasts-container .toast.toast-error {
+  background-color: #d32f2f;
+}
+
+.toasts-container .toast.fading-out {
+  -webkit-animation: .3s fade-out forwards;
+          animation: .3s fade-out forwards;
+}
+
+/*
     Animations
 */
 @-webkit-keyframes spin {
@@ -390,6 +427,28 @@ a {
   to {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1;
+    pointer-events: none;
+  }
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    pointer-events: none;
+  }
+  to {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 /*# sourceMappingURL=style.css.map */

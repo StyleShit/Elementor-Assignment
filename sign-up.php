@@ -45,6 +45,7 @@
 
         <script src="./js/functions.js"></script>
         <script src="./js/api.js"></script>
+        <script src="./js/toast.js"></script>
         <script src="./js/sign-up.js"></script>
     </body>
 
