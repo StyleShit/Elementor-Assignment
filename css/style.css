@@ -173,14 +173,14 @@ a {
 
 .dashboard-container .online-users {
   overflow-x: auto;
-  width: 100%;
+  max-width: 100%;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
 
 .dashboard-container .online-users table {
   border-collapse: collapse;
   background-color: #FFF;
-  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
   max-width: 100%;
   margin: auto;
 }

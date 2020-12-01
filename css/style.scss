@@ -166,13 +166,13 @@ a
     & .online-users
     {
         overflow-x: auto;
-        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
 
         & table
         {
             border-collapse: collapse;
             background-color: #FFF;
-            box-shadow: 0 0 20px 0 rgba( 0,0,0,.4 );
             max-width: 100%;
             margin: auto;
 
