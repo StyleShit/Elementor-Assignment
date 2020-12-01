@@ -141,11 +141,14 @@ class API
          * Login user
          */
 
+        $email = strtolower( trim( $_POST['email'] ) );
+        $password = trim( $_POST['password'] );
+
         // find user by credentials
         $results = DB::getInstance()->whereMultiAnd([
 
-            'email'     => $_POST['email'],
-            'password'  => fn( $hash ) => password_verify( $_POST['password'], $hash )
+            'email'     => $email,
+            'password'  => fn( $hash ) => password_verify( $password, $hash )
             
         ]);
 
