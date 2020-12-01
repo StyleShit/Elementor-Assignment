@@ -37,6 +37,15 @@ const _apiRequest = ({ method = 'GET', data = {}, action = '' }) => {
 };
 
 
+// get current logged in user as JSON
+const _apiGetCurrentUser = () => {
+
+	const user = JSON.parse( getCookie( 'login' ) );
+	return user;
+
+}
+
+
 // register user
 const _apiRegisterUser = ({ email, password, passwordConfirm }) => {
 
