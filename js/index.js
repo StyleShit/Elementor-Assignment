@@ -91,7 +91,7 @@ const fetchOnlineUsers = () => {
             users.forEach( ( user ) => {
 
                 const loggedAt = new Date( user.loggedAt * 1000 ).toLocaleString();
-                const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.email;
+                const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.userName;
 
                 const row = `
                     <tr data-user-id="${ user.id }">
