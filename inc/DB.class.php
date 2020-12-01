@@ -5,8 +5,9 @@ class DB
     // singleton instance
     private static $instance = null;
 
-    // database JSON file name
-    private const DB_FILE = __DIR__ . '/users.json';
+    // database JSON file
+    private const DB_DIR = __DIR__ . '/../db';
+    private const DB_FILE = self::DB_DIR . '/users.json';
 
     // current database data in RAM
     private $data = [];
@@ -17,6 +18,11 @@ class DB
     {
         if( !file_exists( self::DB_FILE ) )
         {
+            if( !is_dir( self::DB_DIR ) )
+            {
+                mkdir( self::DB_DIR );
+            }
+
             file_put_contents( self::DB_FILE, '[]' );
             $this->data = [];
         }
