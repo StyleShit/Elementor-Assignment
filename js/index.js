@@ -39,6 +39,8 @@ window.addEventListener( 'beforeunload', async ( e ) => {
 // fetch online users into the table
 const fetchOnlineUsers = () => {
 
+    const currentUser = _apiGetCurrentUser();
+
     _apiGetOnlineUsers()
         .then( res => {
 
@@ -49,10 +51,11 @@ const fetchOnlineUsers = () => {
             users.forEach( ( user ) => {
 
                 const loggedAt = new Date( user.loggedAt * 1000 ).toLocaleString();
+                const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.email;
 
                 const row = `
                     <tr data-user-id="${ user.id }">
-                        <td>${ user.email }</td>
+                        <td>${ userName }</td>
                         <td>${ loggedAt  }</td>
                         <td>${ user.ip }</td>
                     </tr>
