@@ -70,28 +70,38 @@ class API
             HTTP::_400( $error );
         }
 
-        if( $_POST['password'] != $_POST['password-confirm'] )
+        $email              = trim( strtolower( $_POST['email'] ) );
+        $userName           = trim( $_POST['user-name'] );
+        $password           = trim( $_POST['password'] );
+        $passwordConfirm    = trim( $_POST['password-confirm'] );
+
+        if( $password != $passwordConfirm )
         {
             $error = self::createError( 'Passwords do not match' );
             HTTP::_400( $error );
         }
 
-        if( sizeof( DB::getInstance()->where( 'email', $_POST['email'] ) ) > 0 )
+        if( !isValidEmail( $email ) )
+        {
+            $error = self::createError( 'Invalid email address' );
+            HTTP::_400( $error );
+        }
+
+        if( sizeof( DB::getInstance()->where( 'email', $email ) ) > 0 )
         {
             $error = self::createError( 'Email already exists' );
             HTTP::_409( $error );
         }
 
-        // TODO: validate email
 
         /**
          * Create user
          */
         $user = DB::getInstance()->insert([
 
-            'email'         => $_POST['email'],
-            'userName'      => $_POST['user-name'],
-            'password'      => password_hash( $_POST['password'], PASSWORD_DEFAULT ),
+            'email'         => $email,
+            'userName'      => $userName,
+            'password'      => password_hash( $password, PASSWORD_DEFAULT ),
             'isOnline'      => false,
             'loginsCount'   => 0
 

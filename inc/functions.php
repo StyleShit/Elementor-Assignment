@@ -35,6 +35,13 @@ function filterObjectKeys( $object, $keys )
 }
 
 
+// validate email address
+function isValidEmail( $email )
+{
+    return filter_var( $email, FILTER_VALIDATE_EMAIL );
+}
+
+
 // Dump & Die
 function dd( $value )
 {
