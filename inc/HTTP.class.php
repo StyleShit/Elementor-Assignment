@@ -11,6 +11,13 @@ class HTTP
     }
 
 
+    public static function _301( $url )
+    {
+        header( 'HTTP/1.0 301 Moved Permanently' );
+        header( 'Location: ' . $url );
+        die;
+    }
+
     public static function _200( $message = [] )
     {
         self::json();
