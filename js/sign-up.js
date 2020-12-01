@@ -27,6 +27,12 @@ signUpForm.addEventListener( 'submit', ( e ) => {
         return;
     }
 
+    if( data.password !== data.passwordConfirm )
+    {
+        alert( 'Passwords do not match' );
+        return;
+    }
+
     _apiRegisterUser( data )
 
         .then( res => {
