@@ -2,6 +2,14 @@
  * Helpers
  */
 
+
+// get single element by CSS selector
+const _ = ( selector ) => document.querySelector( selector );
+
+
+// get all elements by CSS selector
+const __ = ( selector ) => document.querySelectorAll( selector );
+
  
 // convert JSON object to FormData
 const jsonToFormData = ( json ) => {
