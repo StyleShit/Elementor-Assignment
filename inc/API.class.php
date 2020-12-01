@@ -202,7 +202,7 @@ class API
 
 
     // get currently authenticated user
-    private static function getAuthUser()
+    public static function getAuthUser()
     {
         if( isset( $_COOKIE['login'] ) )
         {
