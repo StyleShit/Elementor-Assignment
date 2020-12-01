@@ -3,33 +3,35 @@
 class DB
 {
     // singleton instance
-    private static $instance = null;
+    private static $instances = [];
 
     // database JSON file
     private const DB_DIR = __DIR__ . '/../db';
-    private const DB_FILE = self::DB_DIR . '/users.json';
+    private $dbFile;
 
     // current database data in RAM
     private $data = [];
 
 
     // initialize DB instance
-    private function __construct()
+    private function __construct( $table )
     {
-        if( !file_exists( self::DB_FILE ) )
+        $this->dbFile = self::DB_DIR . '/' . $table . '.json';
+
+        if( !file_exists( $this->dbFile ) )
         {
             if( !is_dir( self::DB_DIR ) )
             {
                 mkdir( self::DB_DIR );
             }
 
-            file_put_contents( self::DB_FILE, '[]' );
+            file_put_contents( $this->dbFile, '[]' );
             $this->data = [];
         }
 
         else
         {
-            $content = file_get_contents( self::DB_FILE );
+            $content = file_get_contents( $this->dbFile );
             $content = trim( $content );
             $this->data = $content ? json_decode( $content ) : [];
         }
@@ -37,14 +39,16 @@ class DB
 
 
     // get DB singleton instance
-    public static function getInstance()
+    public static function getInstance( $table = 'users' )
     {
-        if( self::$instance == null )
+        $table = strtolower( $table );
+
+        if( !array_key_exists( $table, self::$instances ) )
         {
-            self::$instance = new self();
+            self::$instances[$table] = new self( $table );
         }
      
-        return self::$instance;
+        return self::$instances[$table];
     }
 
 
@@ -54,7 +58,7 @@ class DB
         try
         {
             $json = json_encode( $this->data );
-            file_put_contents( self::DB_FILE, $json );
+            file_put_contents( $this->dbFile, $json );
         }
 
         catch( Exception $e )
