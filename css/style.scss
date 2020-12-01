@@ -450,13 +450,21 @@ a
 
 @media screen and ( max-width: 600px )
 {
-    .dashboard-container table
+    .dashboard-container 
     {
-        & th,
-        & td
+        & h1
         {
-            padding: .3rem .5rem;
-            font-size: .8rem;
+            font-size: 1.5rem;
+        }
+
+        & table
+        {
+            & th,
+            & td
+            {
+                padding: .3rem .5rem;
+                font-size: .8rem;
+            }
         }
     }
 

@@ -474,6 +474,9 @@ a {
     Media Queries
 */
 @media screen and (max-width: 600px) {
+  .dashboard-container h1 {
+    font-size: 1.5rem;
+  }
   .dashboard-container table th,
   .dashboard-container table td {
     padding: .3rem .5rem;
