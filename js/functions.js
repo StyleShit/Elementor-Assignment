@@ -17,6 +17,8 @@ const jsonToFormData = ( json ) => {
 
 };
 
+
+// get cookie by name
 const getCookie = ( name ) => {
 
     let match = document.cookie.match( new RegExp( `(^| )${ name }=([^;]+)` ) );
