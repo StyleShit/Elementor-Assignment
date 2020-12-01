@@ -31,6 +31,8 @@ window.addEventListener( 'beforeunload', async ( e ) => {
     // set user as offline
     await _apiGoOffline();
 
+    return '';
+
 });
 
 
