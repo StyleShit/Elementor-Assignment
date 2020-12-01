@@ -29,7 +29,7 @@
             <form class="sign-up-form">
                 <input id="email" type="text" class="text-input" placeholder="Email" />
                 <input id="password" type="password" class="text-input" placeholder="Password" />
-                <input id="password-cofirm" type="password" class="text-input" placeholder="Password Confirm" />
+                <input id="password-confirm" type="password" class="text-input" placeholder="Password Confirm" />
                 <input type="submit" value="Sign Up 🎉">
 
             </form>
