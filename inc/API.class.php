@@ -145,7 +145,7 @@ class API
         $password = trim( $_POST['password'] );
 
         // find user by credentials
-        $results = DB::table( 'users' )->whereMultiAnd([
+        $results = DB::table( 'users' )->whereAnd([
 
             'email'     => $email,
             'password'  => fn( $hash ) => password_verify( $password, $hash )

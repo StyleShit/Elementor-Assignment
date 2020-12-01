@@ -161,7 +161,7 @@ class DB
 
 
     // find objects in database with multiple where conditions
-    public function whereMultiAnd( $conditions )
+    public function whereAnd( $conditions )
     {
         $results = array_filter( $this->data, function( $object ) use ( $conditions )
         {
