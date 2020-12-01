@@ -28,7 +28,7 @@ const _apiRequest = ({ method = 'GET', data = {}, action = '' }) => {
 	// other methods, add 'data' as body
 	else
 	{
-		options.body = _jsonToFormData( data );
+		options.body = jsonToFormData( data );
 	}
 
 
@@ -119,22 +119,3 @@ const _apiGetUserData = ({ id }) => {
 	});
 
 }
-
-
-/**
- * Helpers
- */
-
-// convert JSON object to FormData
-const _jsonToFormData = ( json ) => {
-
-	let formData = new FormData();
-
-	for( var key in json )
-	{
-		formData.append( key, json[key] );
-	}
-
-	return formData;
-
-};
