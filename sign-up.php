@@ -27,10 +27,10 @@
             <h1 class="form-title">Sign Up:</h1>
         
             <form class="sign-up-form">
-                <input id="email" type="text" class="text-input" placeholder="Email" />
-                <input id="user-name" type="text" class="text-input" placeholder="User Name" />
-                <input id="password" type="password" class="text-input" placeholder="Password" />
-                <input id="password-confirm" type="password" class="text-input" placeholder="Password Confirm" />
+                <input required id="email" type="email" class="text-input" placeholder="Email" />
+                <input required id="user-name" type="text" class="text-input" placeholder="User Name" />
+                <input required id="password" type="password" class="text-input" placeholder="Password" />
+                <input required id="password-confirm" type="password" class="text-input" placeholder="Password Confirm" />
                 <input type="submit" value="Sign Up 🎉">
 
             </form>

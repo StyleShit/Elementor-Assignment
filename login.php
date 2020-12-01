@@ -27,8 +27,8 @@
             <h1 class="form-title">Login:</h1>
         
             <form class="login-form">
-                <input id="email" type="text" class="text-input" placeholder="Email" />
-                <input id="password" type="password" class="text-input" placeholder="Password" />
+                <input required id="email" type="email" class="text-input" placeholder="Email" />
+                <input required id="password" type="password" class="text-input" placeholder="Password" />
                 <input type="submit" value="Login 🎉">
             </form>
 

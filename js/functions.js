@@ -34,3 +34,12 @@ const getCookie = ( name ) => {
     return match ? decodeURIComponent( match[2] ) : null;
 
 }
+
+
+// simple email validation
+const isValidEmail = ( email ) => {
+
+	const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return re.test( email );
+	
+}

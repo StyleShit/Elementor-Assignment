@@ -1,11 +1,11 @@
 // form inputs
-const email             = _( '#email' );
-const password          = _( '#password' );
-const submitButton      = _( 'input[type=submit]' );
+const email     = _( '#email' );
+const password  = _( '#password' );
+const loginForm = _( '.login-form' );
 
 
 // handle form submit using AJAX
-submitButton.addEventListener( 'click', ( e ) => {
+loginForm.addEventListener( 'submit', ( e ) => {
 
     e.preventDefault();
 

@@ -3,11 +3,11 @@ const email             = _( '#email' );
 const userName          = _( '#user-name' );
 const password          = _( '#password' );
 const passwordConfirm   = _( '#password-confirm' );
-const submitButton      = _( 'input[type=submit]' );
+const signUpForm        = _( '.sign-up-form' );
 
 
 // handle form submit using AJAX
-submitButton.addEventListener( 'click', ( e ) => {
+signUpForm.addEventListener( 'submit', ( e ) => {
 
     e.preventDefault();
 
@@ -18,6 +18,13 @@ submitButton.addEventListener( 'click', ( e ) => {
         password: password.value.trim(),
         passwordConfirm: passwordConfirm.value.trim()
 
+    }
+
+    
+    if( !isValidEmail( data.email ) )
+    {
+        alert( 'Invalid email address' );
+        return;
     }
 
     _apiRegisterUser( data )
