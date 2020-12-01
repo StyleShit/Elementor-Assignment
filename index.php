@@ -24,7 +24,7 @@
         <div class="dashboard-container">
 
             <div>
-                <h1>Welcome, Evyatar!</h1>
+                <h1>Welcome, <span class="user-name"></span>!</h1>
 
                 <a href="#">Logout</a>
             </div>

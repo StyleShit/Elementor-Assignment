@@ -1,7 +1,13 @@
 const onlineUsers   = _( '.online-users tbody' );
 const updatedAt     = _( '.last-updated span' );
+const userName      = _( '.user-name' );
 
 window.addEventListener( 'load', ( e ) => {
+
+    const currentUser = _apiGetCurrentUser();
+    
+    // add welcome message
+    userName.innerText = currentUser.email;
 
     // set user as online
     _apiGoOnline();
