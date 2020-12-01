@@ -40,42 +40,19 @@
 
                         <tr>
                             <th class="last-updated" colspan="3">
-                                Last Updated: <span>2020-12-01 9:00:05</span>
+                                Last Updated: <span>N/A</span>
                             </th>
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Evyatar</td>
-                            <td>2020-12-01 8:45</td>
-                            <td>127.0.0.1</td>
-                        </tr>
-
-                        <tr>
-                            <td>Shir</td>
-                            <td>2020-12-01 8:45</td>
-                            <td>192.168.10.1</td>
-                        </tr>
-
-                        <tr>
-                            <td>John</td>
-                            <td>2020-12-01 8:45</td>
-                            <td>10.0.0.3</td>
-                        </tr>
-
-                        <tr>
-                            <td>Jane</td>
-                            <td>2020-12-01 8:45</td>
-                            <td>8.8.8.8</td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
 
         <script src="./js/functions.js"></script>
         <script src="./js/api.js"></script>
+        <script src="./js/index.js"></script>
     </body>
 
 </html>
