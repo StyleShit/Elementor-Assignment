@@ -5,7 +5,7 @@ const userName      = _( '.user-name' );
 window.addEventListener( 'load', ( e ) => {
 
     const currentUser = _apiGetCurrentUser();
-    
+
     // add welcome message
     userName.innerText = currentUser.email;
 
@@ -20,6 +20,16 @@ window.addEventListener( 'load', ( e ) => {
         fetchOnlineUsers();
 
     }, 3000 );
+
+});
+
+
+window.addEventListener( 'beforeunload', async ( e ) => {
+
+    e.preventDefault();
+
+    // set user as offline
+    await _apiGoOffline();
 
 });
 
