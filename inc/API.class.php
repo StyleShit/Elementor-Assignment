@@ -59,6 +59,7 @@ class API
          */
         $requiredFields = [
             'email',
+            'user-name',
             'password',
             'password-confirm'
         ];
@@ -89,6 +90,7 @@ class API
         $user = DB::getInstance()->insert([
 
             'email'         => $_POST['email'],
+            'userName'      => $_POST['user-name'],
             'password'      => password_hash( $_POST['password'], PASSWORD_DEFAULT ),
             'isOnline'      => false,
             'loginsCount'   => 0
@@ -224,6 +226,7 @@ class API
         $keys = [
             'id',
             'email',
+            'userName',
             'loggedAt',
             'ip'
         ];
@@ -254,7 +257,7 @@ class API
             HTTP::_404( $error );
         }
 
-        $user = filterObjectKeys( $results[0], [ 'email', 'userAgent', 'createdAt', 'loginsCount' ] );
+        $user = filterObjectKeys( $results[0], [ 'email', 'userName', 'userAgent', 'createdAt', 'loginsCount' ] );
 
         $message = self::createMessage( 'User found', $user );
         HTTP::_200( $message );

@@ -17,7 +17,7 @@ window.addEventListener( 'load', ( e ) => {
     const currentUser = _apiGetCurrentUser();
 
     // add welcome message
-    userName.innerText = currentUser.email;
+    userName.innerText = currentUser.userName;
 
     // set user as online
     _apiGoOnline();
@@ -143,7 +143,7 @@ const showUserModal = ( id ) => {
                 const userData = res.data[0];
                 const registrationDate = new Date( userData.createdAt * 1000 ).toLocaleDateString();
                 
-                modalTitle.innerText = 'Viewing: ' + userData.email;
+                modalTitle.innerText = `${ userData.userName } ( ${ userData.email } )`;
                 modalContent.innerHTML = `
                     <strong>User-Agent: </strong>${ userData.userAgent }<br />
                     <strong>Resgistration Date: </strong>${ registrationDate }<br />

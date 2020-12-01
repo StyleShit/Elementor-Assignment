@@ -1,5 +1,6 @@
 // form inputs
 const email             = _( '#email' );
+const userName          = _( '#user-name' );
 const password          = _( '#password' );
 const passwordConfirm   = _( '#password-confirm' );
 const submitButton      = _( 'input[type=submit]' );
@@ -13,6 +14,7 @@ submitButton.addEventListener( 'click', ( e ) => {
     const data = {
 
         email: email.value.trim(),
+        userName: userName.value.trim(),
         password: password.value.trim(),
         passwordConfirm: passwordConfirm.value.trim()
 

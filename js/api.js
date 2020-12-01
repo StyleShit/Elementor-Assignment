@@ -47,13 +47,14 @@ const _apiGetCurrentUser = () => {
 
 
 // register user
-const _apiRegisterUser = ({ email, password, passwordConfirm }) => {
+const _apiRegisterUser = ({ email, userName, password, passwordConfirm }) => {
 
 	return _apiRequest({
 		method: 'POST',
 		action: 'register',
 		data: {
 			email,
+			'user-name': userName,
 			password,
 			'password-confirm': passwordConfirm
 		}
