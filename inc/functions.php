@@ -8,7 +8,7 @@ function checkRequired( $array, $required )
 
     foreach( $required as $r )
     {
-        if( !isset( $array[$r] ) )
+        if( !isset( $array[$r] ) || empty( $array[$r] ) )
         {
             $errors[] = $r;
         }
