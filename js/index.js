@@ -160,7 +160,7 @@ const showUserModal = ( id ) => {
                 const userData = res.data[0];
                 const registrationDate = new Date( userData.createdAt * 1000 ).toLocaleDateString();
                 
-                modalTitle.innerText = `${ userData.userName } ( ${ userData.email } )`;
+                modalTitle.innerText = `${ userData.userName } (${ userData.email })`;
                 modalContent.innerHTML = `
                     <strong>User-Agent: </strong>${ userData.userAgent }<br />
                     <strong>Resgistration Date: </strong>${ registrationDate }<br />
