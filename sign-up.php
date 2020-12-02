@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Live Users Dashboard | Sign Up</title>
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
     </head>
 
     <body>
@@ -34,7 +35,6 @@
                 <input required id="password" type="password" class="text-input" placeholder="Password" />
                 <input required id="password-confirm" type="password" class="text-input" placeholder="Password Confirm" />
                 <input type="submit" value="Sign Up 🎉">
-
             </form>
             
             <p>

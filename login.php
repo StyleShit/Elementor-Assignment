@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Live Users Dashboard | Login</title>
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
     </head>
 
     <body>
