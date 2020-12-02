@@ -14,7 +14,9 @@ const dashboardLoader   = _( '.dashboard-loader' );
 /**
  * Event listeners
  */
-window.addEventListener( 'load', ( e ) => {
+window.addEventListener( 'load', async ( e ) => {
+
+    dashboardLoader.classList.add( 'shown' );
 
     const currentUser = _apiGetCurrentUser();
 
@@ -22,28 +24,39 @@ window.addEventListener( 'load', ( e ) => {
     userName.innerText = currentUser.userName.escape();
 
     // set user as online
-    _apiGoOnline();
+    await _apiGoOnline();
 
     // fetch online users every 3 seconds
     fetchOnlineUsers();
 
-    setInterval( () => {
+    dashboardLoader.classList.remove( 'shown' );
 
-        fetchOnlineUsers();
-
-    }, 3000 );
+    setInterval( () => { fetchOnlineUsers(); }, 3000 );
 
 });
 
 
 window.addEventListener( 'beforeunload', async ( e ) => {
 
-    e.preventDefault();
-
     // set user as offline
     await _apiGoOffline();
 
-    return '';
+});
+
+
+window.addEventListener( 'visibilitychange', async ( e ) => {
+
+    // set user as offline
+    if(document.visibilityState == 'hidden')
+    {
+        await _apiGoOffline();
+    }
+
+    // set user as online
+    else if(document.visibilityState == 'visible')
+    {
+        await _apiGoOnline();
+    }
 
 });
 
