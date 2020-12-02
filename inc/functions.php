@@ -4,17 +4,21 @@
 // check for required fields in array
 function checkRequired( $array, $required )
 {
-    $errors = [];
+    $validator = [
+        'isValid' => true,
+        'errors' => []
+    ];
 
     foreach( $required as $r )
     {
         if( !isset( $array[$r] ) || empty( $array[$r] ) )
         {
-            $errors[] = $r;
+            $validator['errors'] = $r;
+            $validator['isValid'] = false;
         }
     }
 
-    return $errors;
+    return ( object ) $validator;
 }
 
 

@@ -64,7 +64,7 @@ class API
             'password-confirm'
         ];
 
-        if( sizeof( checkRequired( $_POST, $requiredFields ) ) != 0 )
+        if( !checkRequired( $_POST, $requiredFields )->isValid )
         {
             $error = self::createError( 'Please fill all required fields' );
             HTTP::_400( $error );
@@ -129,7 +129,7 @@ class API
             'password'
         ];
 
-        if( sizeof( checkRequired( $_POST, $requiredFields ) ) != 0 )
+        if( !checkRequired( $_POST, $requiredFields )->isValid )
         {
             $error = self::createError( 'Please fill all required fields' );
             HTTP::_400( $error );
