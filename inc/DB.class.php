@@ -2,7 +2,7 @@
 
 class DB
 {
-    // singleton instance
+    // singleton instances
     private static $instances = [];
 
     // database JSON file
@@ -201,7 +201,7 @@ class DB
     {
         foreach( $this->data as $i => $object )
         {
-            if( $object->id == $id)
+            if( $object->id == $id )
             {
                 return [ $i, $object ];
             }

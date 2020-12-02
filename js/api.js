@@ -21,7 +21,7 @@ const _apiRequest = ({ method = 'GET', data = {}, action = '' }) => {
 	// if it's GET, add 'data' as query string
 	if( method === 'GET' )
 	{
-		const queryString = Object.keys( data ).map( key => ( key + '=' + data[key] )).join( '&' );
+		const queryString = Object.keys( data ).map( key => ( key + '=' + data[key] ) ).join( '&' );
 		url += queryString ? '&' + queryString : '';
 	}
 

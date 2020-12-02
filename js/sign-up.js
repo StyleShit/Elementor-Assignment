@@ -36,21 +36,19 @@ signUpForm.addEventListener( 'submit', ( e ) => {
 
     loader.classList.add( 'shown' );
 
-    _apiRegisterUser( data )
+    _apiRegisterUser( data ).then( res => {
 
-        .then( res => {
+        if( res.error )
+        {
+            loader.classList.remove( 'shown' );
+            toast( res.error, 'error' );
+            return;
+        }
+        
+        toast( 'Created successfully! You are being redirected', 'success' );
 
-            if( res.error )
-            {
-                loader.classList.remove( 'shown' );
-                toast( res.error, 'error' );
-                return;
-            }
-            
-            toast( 'Created successfully! You are being redirected', 'success' );
+        setTimeout( () => { window.location = './'; }, 3000 );
 
-            setTimeout( () => { window.location = './'; }, 3000 );
-
-        });
+    });
 
 });

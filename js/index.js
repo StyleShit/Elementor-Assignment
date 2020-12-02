@@ -47,13 +47,13 @@ window.addEventListener( 'beforeunload', async ( e ) => {
 window.addEventListener( 'visibilitychange', async ( e ) => {
 
     // set user as offline
-    if(document.visibilityState == 'hidden')
+    if( document.visibilityState === 'hidden' )
     {
         await _apiGoOffline();
     }
 
     // set user as online
-    else if(document.visibilityState == 'visible')
+    else if( document.visibilityState === 'visible' )
     {
         await _apiGoOnline();
     }
@@ -68,12 +68,7 @@ logoutButton.addEventListener( 'click', ( e ) => {
 
     dashboardLoader.classList.add( 'shown' );
     
-    _apiLogoutUser()
-        .then( res => {
-
-            window.location = './';
-
-        });
+    _apiLogoutUser().then( () => { window.location = './'; });
 
 });
 
@@ -94,45 +89,40 @@ const fetchOnlineUsers = () => {
 
     const currentUser = _apiGetCurrentUser();
 
-    _apiGetOnlineUsers()
-        .then( res => {
+    _apiGetOnlineUsers().then(( res ) => {
 
-            const users = res.data;
-            let output = '';
+        const users = res.data;
+        let output = '';
 
-            // build the table structure
-            users.forEach( ( user ) => {
+        // build the table structure
+        users.forEach(( user ) => {
 
-                const loggedAt = new Date( user.loggedAt * 1000 ).toLocaleString();
-                const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.userName.escape();
+            const loggedAt = new Date( user.loggedAt * 1000 ).toLocaleString();
+            const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.userName.escape();
 
-                const row = `
-                    <tr data-user-id="${ user.id }">
-                        <td>${ userName }</td>
-                        <td>${ loggedAt  }</td>
-                        <td>${ user.ip.escape() }</td>
-                    </tr>
-                `;
+            const row = `
+                <tr data-user-id="${ user.id }">
+                    <td>${ userName }</td>
+                    <td>${ loggedAt  }</td>
+                    <td>${ user.ip.escape() }</td>
+                </tr>
+            `;
 
-                output += row;
-
-            });
-
-
-            // set the data into the table
-            onlineUsers.innerHTML = output;
-            updatedAt.innerText = new Date().toLocaleTimeString();
-
-            bindUserClick();
-
-            // use timeout to prevent instant loader removal
-            setTimeout( () => {
-
-                updateLoader.classList.remove( 'shown' );
-
-            }, 500 );
+            output += row;
 
         });
+
+
+        // set the data into the table
+        onlineUsers.innerHTML = output;
+        updatedAt.innerText = new Date().toLocaleTimeString();
+
+        bindUserClick();
+
+        // use timeout to prevent instant loader removal
+        setTimeout( () => { updateLoader.classList.remove( 'shown' ); }, 500 );
+
+    });
 
 };
 
@@ -142,7 +132,7 @@ const bindUserClick = () => {
 
     const rows   = __( '.online-users tbody tr' );
 
-    rows.forEach( ( row ) => {
+    rows.forEach(( row ) => {
 
         row.addEventListener( 'click', () => {
 
@@ -161,27 +151,26 @@ const showUserModal = ( id ) => {
 
     dashboardLoader.classList.add( 'shown' );
     
-    _apiGetUserData({ id })
-        .then( res => {
+    _apiGetUserData({ id }).then(( res ) => {
 
-            dashboardLoader.classList.remove( 'shown' );
+        dashboardLoader.classList.remove( 'shown' );
 
-            if( !res.error )
-            {
-                showModal();
+        if( !res.error )
+        {
+            const userData = res.data[0];
+            const registrationDate = new Date( userData.createdAt * 1000 ).toLocaleDateString();
+            
+            modalTitle.innerText = `${ userData.userName } (${ userData.email })`;
+            modalContent.innerHTML = `
+            <strong>User-Agent: </strong>${ userData.userAgent.escape() }<br />
+            <strong>Resgistration Date: </strong>${ registrationDate }<br />
+            <strong>Logins Count: </strong>${ userData.loginsCount }<br />
+            `;
 
-                const userData = res.data[0];
-                const registrationDate = new Date( userData.createdAt * 1000 ).toLocaleDateString();
-                
-                modalTitle.innerText = `${ userData.userName } (${ userData.email })`;
-                modalContent.innerHTML = `
-                    <strong>User-Agent: </strong>${ userData.userAgent.escape() }<br />
-                    <strong>Resgistration Date: </strong>${ registrationDate }<br />
-                    <strong>Logins Count: </strong>${ userData.loginsCount }<br />
-                `;
-            }
+            showModal();
+        }
 
-        });
+    });
 
 }
 

@@ -19,19 +19,17 @@ loginForm.addEventListener( 'submit', ( e ) => {
 
     loader.classList.add( 'shown' );
 
-    _apiLoginUser( data )
+    _apiLoginUser( data ).then(( res ) => {
 
-        .then( res => {
+        if( res.error )
+        {
+            loader.classList.remove( 'shown' );
+            toast( res.error, 'error' );
+            return;
+        }
+        
+        window.location = './';
 
-            if( res.error )
-            {
-                loader.classList.remove( 'shown' );
-                toast( res.error, 'error' );
-                return;
-            }
-            
-            window.location = './';
-
-        });
+    });
 
 });

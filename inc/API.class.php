@@ -115,7 +115,6 @@ class API
 
         $message = self::createMessage( 'Created successfully', $user );
         HTTP::_201( $message );
-
     }
 
 
@@ -191,7 +190,7 @@ class API
 
 
     // set current logged in user as online
-    private static function goOnline( $isOnline = true, $showSuccessMessage = true)
+    private static function goOnline( $isOnline = true, $showSuccessMessage = true )
     {
         $user = self::getAuthUser();
 
@@ -266,7 +265,7 @@ class API
         $userId = trim( $_GET['user-id'] );
         $results = DB::table( 'users' )->where( 'id', $userId );
 
-        if( sizeof( $results ) == 0)
+        if( sizeof( $results ) == 0 )
         {
             $error = self::createError( 'User not found' );
             HTTP::_404( $error );

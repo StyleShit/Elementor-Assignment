@@ -7,7 +7,7 @@ class HTTP
 {
     private static function json()
     {
-        header('Content-Type: application/json');
+        header( 'Content-Type: application/json' );
     }
 
     public static function _200( $message = [] )
