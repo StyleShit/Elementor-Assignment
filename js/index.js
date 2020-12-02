@@ -19,7 +19,7 @@ window.addEventListener( 'load', ( e ) => {
     const currentUser = _apiGetCurrentUser();
 
     // add welcome message
-    userName.innerText = currentUser.userName;
+    userName.innerText = currentUser.userName.escape();
 
     // set user as online
     _apiGoOnline();
@@ -91,13 +91,13 @@ const fetchOnlineUsers = () => {
             users.forEach( ( user ) => {
 
                 const loggedAt = new Date( user.loggedAt * 1000 ).toLocaleString();
-                const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.userName;
+                const userName = currentUser.id === user.id ? '<strong>You</strong>' : user.userName.escape();
 
                 const row = `
                     <tr data-user-id="${ user.id }">
                         <td>${ userName }</td>
                         <td>${ loggedAt  }</td>
-                        <td>${ user.ip }</td>
+                        <td>${ user.ip.escape() }</td>
                     </tr>
                 `;
 
@@ -162,7 +162,7 @@ const showUserModal = ( id ) => {
                 
                 modalTitle.innerText = `${ userData.userName } (${ userData.email })`;
                 modalContent.innerHTML = `
-                    <strong>User-Agent: </strong>${ userData.userAgent }<br />
+                    <strong>User-Agent: </strong>${ userData.userAgent.escape() }<br />
                     <strong>Resgistration Date: </strong>${ registrationDate }<br />
                     <strong>Logins Count: </strong>${ userData.loginsCount }<br />
                 `;

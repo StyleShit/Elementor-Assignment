@@ -43,3 +43,18 @@ const isValidEmail = ( email ) => {
 	return re.test( email );
 	
 }
+
+
+// escape HTML special chars to prevent XSS
+String.prototype.escape = function()
+{
+
+    const specialChars = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;'
+	};
+	
+    return this.replace( /[&<>]/g, ( tag ) => specialChars[tag] || tag );
+	
+};
