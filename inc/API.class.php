@@ -168,7 +168,9 @@ class API
 
 
         unset( $user->password );
-        setcookie( 'login', json_encode( $user ), time() + 3600 * 10, '/' );
+        
+        $cookie = rawurlencode( json_encode( $user ) );
+        setrawcookie( 'login', $cookie, time() + 3600 * 10, '/' );
 
 
         $message = self::createMessage( 'Logged in successfully' );
